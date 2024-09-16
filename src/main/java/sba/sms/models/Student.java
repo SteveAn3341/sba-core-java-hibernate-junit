@@ -2,12 +2,10 @@ package sba.sms.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
 
 /**
  * Student is a POJO, configured as a persistent class that represents (or maps to) a table
@@ -17,10 +15,54 @@ import java.util.Set;
  * Implement Lombok annotations to eliminate boilerplate code.
  */
 
+@Entity
+@Table(name = "student")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Student {
 
+    @Id
+    @Column(name = "email", length = 50, nullable = false)
+    @NonNull
+    private String email;
 
+    @Column(name = "name", length = 50, nullable = false)
+    @NonNull
+    private String name;
+
+    @Column(name = "password", length = 50, nullable = false)
+    @NonNull
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE
+    })
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_email"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Course> courses = new HashSet<>();
+
+    // Helper method to add a course
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.getStudents().add(this);
     }
 
+    // Override equals and hashcode methods
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return email.equals(student.email);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+}

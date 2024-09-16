@@ -28,18 +28,19 @@ public class CommandLine {
      *
      *
      */
-    public static void addData(){
-        /*
-
+    public static void addData() {
         StudentService studentService = new StudentService();
         CourseService courseService = new CourseService();
-        studentService.createStudent(new Student("reema@gmail.com", "reema brown", PASSWORD));
-        studentService.createStudent(new Student("annette@gmail.com", "annette allen", PASSWORD));
-        studentService.createStudent(new Student("anthony@gmail.com", "anthony gallegos", PASSWORD));
-        studentService.createStudent(new Student("ariadna@gmail.com", "ariadna ramirez", PASSWORD));
-        studentService.createStudent(new Student("bolaji@gmail.com", "bolaji saibu", PASSWORD));
-        studentService.createStudent(new Student("shirese@gmail.com", "shirese smith", PASSWORD));
 
+        // Create Students
+        studentService.createStudent(new Student("reema@gmail.com", "Reema Brown", PASSWORD));
+        studentService.createStudent(new Student("annette@gmail.com", "Annette Allen", PASSWORD));
+        studentService.createStudent(new Student("anthony@gmail.com", "Anthony Gallegos", PASSWORD));
+        studentService.createStudent(new Student("ariadna@gmail.com", "Ariadna Ramirez", PASSWORD));
+        studentService.createStudent(new Student("bolaji@gmail.com", "Bolaji Saibu", PASSWORD));
+        studentService.createStudent(new Student("shirese@gmail.com", "Shirese Smith", PASSWORD));
+
+        // Create Courses
         courseService.createCourse(new Course("Java", "Roger Boaitey"));
         courseService.createCourse(new Course("Frontend", "William Roales"));
         courseService.createCourse(new Course("JPA", "Jafer Alhaboubi"));
@@ -48,7 +49,5 @@ public class CommandLine {
         courseService.createCourse(new Course("GitHub", "Igor Adulyan"));
         courseService.createCourse(new Course("Web Services", "Raheem Abolfathzadeh"));
         courseService.createCourse(new Course("Microservices", "Eric Heilig"));
-
-        */
     }
 }
